@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import ProjectGrid from '../../components/ProjectGrid.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const sortedProjects = allProjects.sort((a, b) => b.data.year - a.data.year);
+---
+
+<BaseLayout title="Projects - Anyi Liu">
+  <div class="page-header">
+    <h1>Projects</h1>
+    <p class="intro">A collection of research prototypes, open source tools, and experiments.</p>
+  </div>
+
+  <section>
+    <ProjectGrid>
+      {sortedProjects.map((project) => (
+        <ProjectCard
+          title={project.data.title}
+          summary={project.data.summary}
+          year={project.data.year}
+          category={project.data.category}
+          slug={project.slug}
+          tags={project.data.tags}
+        />
+      ))}
+    </ProjectGrid>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: var(--space-8);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .intro {
+    font-size: 1.25rem;
+    color: var(--color-muted);
+    max-width: 60ch;
+  }
+</style>

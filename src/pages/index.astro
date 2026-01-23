@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import ProjectGrid from '../components/ProjectGrid.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import WritingListItem from '../components/WritingListItem.astro';
+import { getCollection } from 'astro:content';
+
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects
+  .filter((project) => project.data.featured)
+  .sort((a, b) => b.data.year - a.data.year)
+  .slice(0, 4);
+
+const allWriting = await getCollection('writing');
+const latestWriting = allWriting
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 4);
+---
+
+<BaseLayout title="Anyi Liu - Security & AI Research">
+  <Hero />
+
+  <section class="section">
+    <SectionHeader title="Selected Projects" href="/projects" linkText="View all projects" />
+    <ProjectGrid>
+      {featuredProjects.map((project) => (
+        <ProjectCard
+          title={project.data.title}
+          summary={project.data.summary}
+          year={project.data.year}
+          category={project.data.category}
+          slug={project.slug}
+          tags={project.data.tags}
+        />
+      ))}
+    </ProjectGrid>
+  </section>
+
+  <section class="section">
+    <SectionHeader title="Latest Writing" href="/writing" linkText="View all writing" />
+    <div class="writing-list">
+      {latestWriting.map((post) => (
+        <WritingListItem
+          title={post.data.title}
+          date={post.data.date}
+          summary={post.data.summary}
+          slug={post.slug}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <SectionHeader title="About" href="/about" linkText="More about me" />
+    <p class="about-snippet">
+      I am a researcher and engineer interested in the intersection of systems security and artificial intelligence. My work focuses on building robust defenses for the next generation of software infrastructure. Previously, I've worked on side-channel analysis, secure enclaves, and verifiable computing.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .section {
+    margin-bottom: var(--space-16);
+  }
+  
+  .about-snippet {
+    max-width: 65ch;
+    font-size: 1.125rem;
+    color: var(--color-muted);
+    line-height: 1.7;
+  }
+</style>

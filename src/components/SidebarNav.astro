@@ -1,0 +1,61 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove leading slash
+---
+
+<nav class="sidebar-nav">
+  <div class="site-title">
+    <a href="/">Anyi Liu</a>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="/" class={pathname === '/' ? 'active' : ''}>Home</a></li>
+    <li><a href="/projects" class={currentPath.startsWith('projects') ? 'active' : ''}>Projects</a></li>
+    <li><a href="/writing" class={currentPath.startsWith('writing') ? 'active' : ''}>Writing</a></li>
+    <li><a href="/about" class={currentPath.startsWith('about') ? 'active' : ''}>About</a></li>
+    <li><a href="/contact" class={currentPath.startsWith('contact') ? 'active' : ''}>Contact</a></li>
+  </ul>
+</nav>
+
+<style>
+  .sidebar-nav {
+    padding: var(--space-8) var(--space-6);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .site-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-8);
+  }
+
+  .site-title a {
+    color: var(--color-text);
+    border: none;
+  }
+
+  .nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .nav-links a {
+    color: var(--color-muted);
+    font-size: 1.125rem;
+    border: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    color: var(--color-text);
+    font-weight: 500;
+  }
+</style>

@@ -1,0 +1,102 @@
+---
+import '../styles/global.css';
+import SidebarNav from '../components/SidebarNav.astro';
+import TopNav from '../components/TopNav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Research, teaching, and tooling focused on trustworthy AI and secure software systems." } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Google Fonts: Playfair Display & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="layout">
+      <aside class="sidebar">
+        <SidebarNav />
+      </aside>
+      
+      <div class="mobile-header">
+        <TopNav />
+      </div>
+
+      <main class="main-content">
+        <slot />
+        <Footer />
+      </main>
+    </div>
+  </body>
+</html>
+
+<style>
+  .layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .mobile-header {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .main-content {
+    flex: 1;
+    padding: var(--space-4) var(--space-4) var(--space-8);
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .layout {
+      flex-direction: row;
+    }
+
+    .mobile-header {
+      display: none;
+    }
+
+    .sidebar {
+      display: block;
+      width: var(--sidebar-width);
+      height: 100vh;
+      position: sticky;
+      top: 0;
+      border-right: 1px solid var(--color-border);
+      overflow-y: auto;
+      background-color: var(--color-bg);
+      flex-shrink: 0;
+    }
+
+    .main-content {
+      padding: var(--space-8) var(--space-8) var(--space-16);
+      max-width: 900px; /* Constrain content width */
+    }
+  }
+</style>

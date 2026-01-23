@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WritingListItem from '../../components/WritingListItem.astro';
+import { getCollection } from 'astro:content';
+
+const allWriting = await getCollection('writing');
+const sortedWriting = allWriting.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Writing - Anyi Liu">
+  <div class="page-header">
+    <h1>Writing</h1>
+    <p class="intro">Notes, thoughts, and essays on technology and research.</p>
+  </div>
+
+  <section class="writing-list">
+    {sortedWriting.map((post) => (
+      <WritingListItem
+        title={post.data.title}
+        date={post.data.date}
+        summary={post.data.summary}
+        slug={post.slug}
+      />
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header {
+    margin-bottom: var(--space-8);
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-2);
+  }
+
+  .intro {
+    font-size: 1.25rem;
+    color: var(--color-muted);
+    max-width: 60ch;
+  }
+  
+  .writing-list {
+    max-width: 800px;
+  }
+</style>
