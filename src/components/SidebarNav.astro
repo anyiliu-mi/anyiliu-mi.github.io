@@ -1,61 +1,161 @@
 ---
-const pathname = new URL(Astro.request.url).pathname;
-const currentPath = pathname.slice(1); // remove leading slash
+const links = [
+  { text: 'Home', href: '/' },
+  { text: 'Teaching', href: '/teaching' },
+  { text: 'Research', href: '/research' },
+  { text: 'Projects', href: '/research/projects' },
+  { text: 'About', href: '/about' },
+  { text: 'Contact', href: '/contact' },
+];
+
+const currentPath = Astro.url.pathname;
 ---
 
-<nav class="sidebar-nav">
-  <div class="site-title">
-    <a href="/">Anyi Liu</a>
-  </div>
+<nav class="sidebar">
+  <div class="sidebar-content">
+    <div class="profile-section">
+      <img src="/images/portrait.png" alt="Anyi Liu" class="portrait" />
+      <a href="/" class="site-title">Anyi Liu</a>
+      <div class="contact-info">
+        <p class="role">Associate Professor</p>
+        <p class="dept">Department of Computer Science and Engineering</p>
+        <p class="uni">Oakland University</p>
+        <p class="address">
+          2200 N. Squirrel Road<br>
+          Rochester, MI 48309
+        </p>
+        <p class="email"><a href="mailto:anyiliu@oakland.edu">anyiliu@oakland.edu</a></p>
+        <p class="phone">(248) 370-2137</p>
+      </div>
+    </div>
 
-  <ul class="nav-links">
-    <li><a href="/" class={pathname === '/' ? 'active' : ''}>Home</a></li>
-    <li><a href="/projects" class={currentPath.startsWith('projects') ? 'active' : ''}>Projects</a></li>
-    <li><a href="/writing" class={currentPath.startsWith('writing') ? 'active' : ''}>Writing</a></li>
-    <li><a href="/about" class={currentPath.startsWith('about') ? 'active' : ''}>About</a></li>
-    <li><a href="/contact" class={currentPath.startsWith('contact') ? 'active' : ''}>Contact</a></li>
-  </ul>
+    <ul class="nav-links">
+      {links.map((link) => (
+        <li>
+          <a 
+            href={link.href} 
+            class:list={[{ active: currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href)) }]}
+          >
+            {link.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="social-links">
+      <a href="https://github.com/anyiliu-mi" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+      </a>
+      <a href="mailto:anyiliu@oakland.edu" aria-label="Email">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      </a>
+    </div>
+  </div>
 </nav>
 
 <style>
-  .sidebar-nav {
-    padding: var(--space-8) var(--space-6);
+  .sidebar {
+    width: 280px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: var(--space-8);
+    background-color: var(--color-background);
+    border-right: 1px solid var(--color-border);
+    overflow-y: auto;
+  }
+
+  .sidebar-content {
     display: flex;
     flex-direction: column;
     height: 100%;
   }
 
-  .site-title {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    font-weight: 700;
+  .profile-section {
     margin-bottom: var(--space-8);
   }
 
-  .site-title a {
+  .portrait {
+    width: 120px;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: var(--space-4);
+    display: block;
+  }
+
+  .site-title {
+    font-size: 1.5rem;
+    font-weight: 700;
     color: var(--color-text);
-    border: none;
+    text-decoration: none;
+    display: block;
+    margin-bottom: var(--space-4);
+    letter-spacing: -0.02em;
+  }
+
+  .contact-info {
+    font-size: 0.875rem;
+    color: var(--color-muted);
+    line-height: 1.5;
+  }
+
+  .contact-info p {
+    margin-bottom: var(--space-1);
+  }
+
+  .contact-info a {
+    color: var(--color-text);
+    text-decoration: none;
+  }
+
+  .contact-info a:hover {
+    text-decoration: underline;
   }
 
   .nav-links {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-3);
+    flex-grow: 1;
+  }
+
+  .nav-links li {
+    margin-bottom: var(--space-2);
   }
 
   .nav-links a {
+    text-decoration: none;
     color: var(--color-muted);
-    font-size: 1.125rem;
-    border: none;
-    transition: color 0.2s;
+    font-size: 1rem;
+    display: block;
+    padding: var(--space-2) 0;
+    transition: color 0.2s ease;
   }
 
   .nav-links a:hover,
   .nav-links a.active {
     color: var(--color-text);
-    font-weight: 500;
+  }
+
+  .social-links {
+    display: flex;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+  }
+
+  .social-links a {
+    color: var(--color-muted);
+    transition: color 0.2s ease;
+  }
+
+  .social-links a:hover {
+    color: var(--color-text);
+  }
+
+  @media (max-width: 768px) {
+    .sidebar {
+      display: none;
+    }
   }
 </style>

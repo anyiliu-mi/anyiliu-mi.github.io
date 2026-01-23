@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Teaching - Anyi Liu">
+  <div class="teaching-container">
+    <h1>Teaching Activities</h1>
+    
+    <section class="courses">
+      <h2>Courses</h2>
+      <ul>
+        <li><strong>CSI 1320</strong> - Introduction to Python Programming and Unix (Undergraduate-level)</li>
+        <li><strong>CSI 1420</strong> - Introduction to C Programming and Unix</li>
+        <li><strong>CSI 2470</strong> - Introduction to Computer Networks</li>
+        <li><strong>CSI 4500</strong> - Fundamentals of Operating Systems (Undergraduate-level)</li>
+        <li><strong>CSI 4600</strong> - Network Security (Graduate-level)</li>
+        <li><strong>CSI 4480</strong> - Information Security Practice (Undergraduate-level)</li>
+        <li><strong>CSI 5480</strong> - Information Security Practice (Graduate-level)</li>
+        <li><strong>CSI 5500</strong> - Fundamentals of Operating Systems (Graduate-level)</li>
+        <li><strong>CSI 5600</strong> - Network Security (Graduate-level)</li>
+        <li><strong>CSI 5900</strong> - Software Security (Graduate-level)</li>
+        <li><strong>CSI 6600</strong> - Network Security (Graduate-level)</li>
+        <li><strong>CSI 8999</strong> - PhD Dissertation (Ph.D.-level)</li>
+      </ul>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .teaching-container {
+    max-width: 65ch;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--space-8);
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-2);
+  }
+
+  ul {
+    list-style: disc outside;
+    margin-left: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  li {
+    margin-bottom: var(--space-2);
+    line-height: 1.6;
+    color: var(--color-text);
+  }
+</style>
