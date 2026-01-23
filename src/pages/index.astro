@@ -14,10 +14,28 @@ const featuredProjects = allProjects
 
 <BaseLayout title="Anyi Liu - Security & AI Research">
   <section class="section">
-    <SectionHeader title="About" href="/about" linkText="More about me" />
-    <p class="about-snippet">
-      I am a researcher and engineer interested in the intersection of systems security and artificial intelligence. My work focuses on building robust defenses for the next generation of software infrastructure. Previously, I've worked on side-channel analysis, secure enclaves, and verifiable computing.
-    </p>
+    <SectionHeader title="About Me" href="#" linkText="" />
+    <div class="bio">
+      <p>
+        I am an Associate Professor in the Department of Computer Science and Engineering at <a href="https://wwwp.oakland.edu/">Oakland University</a>. I received my Ph.D. degree from the Department of Computer Science at <a href="http://www.gmu.edu/">George Mason University</a>. 
+      </p>
+      
+      <p>
+        My research lies at the intersection of systems security, software engineering, and artificial intelligence. I am particularly interested in how we can build systems that remain secure and reliable even as they incorporate probabilistic AI components.
+      </p>
+
+      <h3>Research Interests</h3>
+      <ul>
+        <li><strong>System Security:</strong> Cloud, Mobile, and IoT/CPS Security, Hardware-assisted Execution Environments.</li>
+        <li><strong>AI Safety:</strong> Robustness of Agentic Systems, Prompt Injection Defense, Secure Retrieval.</li>
+        <li><strong>Forensics:</strong> Digital Forensics, Intrusion Detection, Prevention, and Correlation.</li>
+      </ul>
+
+      <h3>Teaching</h3>
+      <p>
+        I teach courses on Network Security, Operating Systems, and Secure Coding. My goal is to equip students with both the theoretical foundations and practical skills needed to secure modern computing infrastructure.
+      </p>
+    </div>
   </section>
 
   <section class="section">
@@ -42,10 +60,40 @@ const featuredProjects = allProjects
     margin-bottom: var(--space-16);
   }
   
-  .about-snippet {
+  .bio {
     max-width: 65ch;
     font-size: 1.125rem;
-    color: var(--color-muted);
-    line-height: 1.7;
+    color: var(--color-text);
+  }
+
+  .bio a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 4px;
+  }
+
+  .bio a:hover {
+    color: var(--color-accent);
+    text-decoration-color: var(--color-accent);
+  }
+
+  .bio h3 {
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    margin-top: var(--space-8);
+    margin-bottom: var(--space-4);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--space-2);
+  }
+
+  .bio ul {
+    list-style: disc outside;
+    margin-left: var(--space-4);
+    margin-bottom: var(--space-4);
+  }
+
+  .bio li {
+    margin-bottom: var(--space-2);
   }
 </style>
