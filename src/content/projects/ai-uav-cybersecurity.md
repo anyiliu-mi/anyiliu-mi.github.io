@@ -14,8 +14,6 @@ In the dynamic and hostile environments where Unmanned Aerial Vehicles (UAVs) op
 
 However, deploying resource-intensive AI models directly onto UAVs—which have strict computational and power limits—presents a significant challenge. Our project focuses on developing **high-performance, scalable LLM cohorts** tailored for embedded aerospace electronics, enabling complex missions with higher levels of autonomy and resilience against cyber threats.
 
-## Strategic Relevance (NASA Alignment)
-This research directly addresses core objectives of the NASA Strategic Plan, including ensuring enterprise protection, assuring flight safety, and sustaining scalable infrastructure operations.
 
 ## System Architecture & Approach
 Our framework optimizes the integration of LLMs within resource-constrained UAV systems. The architecture consists of multiple distinct components:
