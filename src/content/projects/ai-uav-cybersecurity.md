@@ -16,6 +16,8 @@ However, deploying resource-intensive AI models directly onto UAVs—which have 
 
 
 ## System Architecture & Approach
+<img src="/images/AI-Enhanced-Cybersecurity.jpg" alt="UAV Cybersecurity Architecture" style="max-width: 50%; height: auto; display: block; margin: 0 auto; padding-bottom: 2rem;" />
+
 Our framework optimizes the integration of LLMs within resource-constrained UAV systems. The architecture consists of multiple distinct components:
 - **Targeted Fine-Tuning Arrays:** Individual LLMs are calibrated using specific telemetry streams (e.g., TCP, UDP, MavLink) and video data to ensure robust cross-sectional analysis.
 - **Parallel Processing:** To maintain responsiveness in dynamic environments, fine-tuning units operate concurrently, rapidly generating customized LLMs at different data rates.
