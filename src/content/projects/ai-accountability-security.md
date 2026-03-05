@@ -1,6 +1,6 @@
 ---
 title: "AI Accountability & Security in Autonomous Systems"
-year: 2024
+year: "2025 - now"
 category: "Security"
 summary: "An advanced forensic framework for AI-augmented autonomous systems to ensure security, accountability, and compliance."
 featured: true
