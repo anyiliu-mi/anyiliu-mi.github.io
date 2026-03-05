@@ -9,7 +9,7 @@ links:
   paper: "#"
   code: "#"
 ---
-![AI Accountability Framework Architecture](/images/ai-framework-diagram.jpg)
+<img src="/images/ai-framework-diagram.jpg" alt="AI Accountability Framework Architecture" style="max-width: 50%; height: auto; display: block; margin: 0 auto; padding-bottom: 2rem;" />
 
 ## The Challenge
 While AI-driven autonomous systems are rapidly transforming industries, their widespread adoption is hindered by critical gaps in cybersecurity, forensic accountability, and data privacy compliance. These vulnerabilities threaten consumer trust and expose businesses to significant legal and reputational risks.
