@@ -1,0 +1,1 @@
+Our paper "When Memory Hurts: Amplifying Mission-Channel Attacks in LLM-Driven UAV Agents" accepted at the 25th IEEE International Conference on Machine Learning and Applications. Congratulations to the team!

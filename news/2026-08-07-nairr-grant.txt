@@ -1,0 +1,1 @@
+I received a National Artificial Intelligence Research Resource (NAIRR) award of GPU credits to investigate an autonomous, LLM-orchestrated pipeline for molecular design and chemical sensing. The project runs 2026–2027.
