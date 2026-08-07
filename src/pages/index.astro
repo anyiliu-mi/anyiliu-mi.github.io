@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/SectionHeader.astro';
+import RecentNews from '../components/RecentNews.astro';
 import ProjectGrid from '../components/ProjectGrid.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
@@ -13,18 +14,29 @@ const featuredProjects = allProjects
 ---
 
 <BaseLayout title="Anyi Liu - Security & AI Research">
+  <!-- About Me -->
   <section class="section">
     <SectionHeader title="About Me" href="#" linkText="" />
     <div class="bio">
       <p>
-        I am an Associate Professor in the Department of Computer Science and Engineering at <a href="https://www.oakland.edu/" target="_blank" rel="noopener noreferrer">Oakland University</a>. I received my Ph.D. degree from the Department of Computer Science at <a href="https://www.gmu.edu/" target="_blank" rel="noopener noreferrer">George Mason University</a>. 
+        I am an Associate Professor in the Department of Computer Science and Engineering at <a href="https://www.oakland.edu/" target="_blank" rel="noopener noreferrer">Oakland University</a>. I received my Ph.D. degree from the Department of Computer Science at <a href="https://www.gmu.edu/" target="_blank" rel="noopener noreferrer">George Mason University</a>.
       </p>
-      
       <p>
         My research lies at the intersection of systems security, software engineering, and artificial intelligence. I am particularly interested in how we can build systems that remain secure and reliable even as they incorporate probabilistic AI components.
       </p>
+    </div>
+  </section>
 
-      <h3>Research Interests</h3>
+  <!-- Recent News Ticker -->
+  <section class="section news-section">
+    <SectionHeader title="Recent News" href="#" linkText="" />
+    <RecentNews />
+  </section>
+
+  <!-- Research Interests -->
+  <section class="section">
+    <SectionHeader title="Research Interests" href="#" linkText="" />
+    <div class="bio">
       <ul>
         <li><strong>System Security:</strong> Cloud, Mobile, and IoT/CPS Security, Hardware-assisted Execution Environments.</li>
         <li><strong>AI Safety:</strong> Robustness of Agentic Systems, Prompt Injection Defense, Secure Retrieval.</li>

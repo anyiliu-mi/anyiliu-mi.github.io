@@ -1,0 +1,140 @@
+---
+import newsData from '../data/news.json';
+
+const items = newsData;
+// Duplicate list for seamless infinite scroll loop
+const doubled = [...items, ...items];
+// Speed: ~6 seconds per item, feels natural
+const duration = `${items.length * 6}s`;
+---
+
+{items.length > 0 && (
+  <div class="news-ticker" style={`--duration: ${duration}`}>
+    <div class="news-label">
+      <span>RECENT<br/>NEWS</span>
+    </div>
+    <div class="news-viewport">
+      <ul class="news-track">
+        {doubled.map((item, i) => (
+          <li class="news-item" key={i}>
+            <span class="news-date">{item.date}</span>
+            <span class="news-sep">—</span>
+            <span class="news-text">{item.text}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+)}
+
+<style>
+  .news-ticker {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: var(--color-surface);
+    margin: var(--space-6) 0;
+    max-width: 65ch;
+    height: 120px;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .news-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-text);
+    color: var(--color-surface);
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0 var(--space-3);
+    white-space: nowrap;
+    flex-shrink: 0;
+    text-align: center;
+    line-height: 1.4;
+    min-width: 52px;
+  }
+
+  .news-viewport {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* Fade masks at top and bottom */
+  .news-viewport::before,
+  .news-viewport::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 28px;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .news-viewport::before {
+    top: 0;
+    background: linear-gradient(to bottom, var(--color-surface) 0%, transparent 100%);
+  }
+
+  .news-viewport::after {
+    bottom: 0;
+    background: linear-gradient(to top, var(--color-surface) 0%, transparent 100%);
+  }
+
+  .news-track {
+    list-style: none;
+    animation: scroll-up var(--duration) linear infinite;
+    will-change: transform;
+    padding: var(--space-2) var(--space-4);
+  }
+
+  /* Pause on hover */
+  .news-ticker:hover .news-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll-up {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+  }
+
+  .news-item {
+    display: flex;
+    gap: var(--space-2);
+    align-items: baseline;
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .news-item:last-child {
+    border-bottom: none;
+  }
+
+  .news-date {
+    font-size: 0.72rem;
+    color: var(--color-accent);
+    font-weight: 600;
+    white-space: nowrap;
+    font-family: var(--font-sans);
+    flex-shrink: 0;
+  }
+
+  .news-sep {
+    color: var(--color-muted);
+    flex-shrink: 0;
+  }
+
+  .news-text {
+    color: var(--color-text);
+    font-family: var(--font-sans);
+  }
+</style>
