@@ -28,6 +28,7 @@ const featuredProjects = allProjects
       <h3>Research Interests</h3>
       <ul>
         <li><strong>AI Security:</strong> Physical AI Security. Robust Agentic Systems.</li>
+        <li><strong>System Security:</strong> Cloud, Mobile, and IoT/CPS Security, Hardware-assisted Execution Environments.</li>
         <li><strong>Forensics:</strong> Digital Forensics, Intrusion Detection, Prevention, and Correlation.</li>
       </ul>
     </div>
@@ -55,7 +56,7 @@ const featuredProjects = allProjects
     </ProjectGrid>
   </section>
 
-  <section class="section" style="display: flex; flex-direction: column; align-items: center; gap: 2rem; margin-top: 2rem;">
+  <section class="section" style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem; margin-top: 1.5rem;">
     <!-- Map Widget -->
     <script type="text/javascript" id="mapmyvisitors" src="//mapmyvisitors.com/map.js?d=wEGmg-lIGopAIXX7Y0GZ48LXfpHDxLZMrEQ--w4yprk&cl=ffffff&w=a"></script>
     
@@ -66,12 +67,13 @@ const featuredProjects = allProjects
 
 <style>
   .section {
-    margin-bottom: var(--space-16);
+    margin-bottom: var(--space-8);
   }
   
   .bio {
     max-width: 65ch;
-    font-size: 1.125rem;
+    font-size: 1.05rem;
+    line-height: 1.5;
     color: var(--color-text);
   }
 
@@ -89,20 +91,21 @@ const featuredProjects = allProjects
 
   .bio h3 {
     font-family: var(--font-sans);
-    font-size: 1.5rem;
-    margin-top: var(--space-8);
-    margin-bottom: var(--space-4);
+    font-size: 1.35rem;
+    margin-top: var(--space-5);
+    margin-bottom: var(--space-3);
     border-bottom: 1px solid var(--color-border);
-    padding-bottom: var(--space-2);
+    padding-bottom: var(--space-1);
   }
 
   .bio ul {
     list-style: disc outside;
     margin-left: var(--space-4);
-    margin-bottom: var(--space-4);
+    margin-bottom: var(--space-3);
   }
 
   .bio li {
     margin-bottom: var(--space-2);
+    line-height: 1.45;
   }
 </style>
