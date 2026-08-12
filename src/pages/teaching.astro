@@ -6,6 +6,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="teaching-container">
     <h1>Teaching Activities</h1>
     
+    <p class="intro">
+      I teach courses on Network Security, Operating Systems, and Secure Coding. My goal is to equip students with both the theoretical foundations and practical skills needed to secure modern computing infrastructure.
+    </p>
+
     <section class="courses">
       <h2>Courses</h2>
       <ul>
@@ -33,7 +37,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   
   h1 {
     font-size: 2.5rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .intro {
+    font-size: 1.125rem;
+    line-height: 1.6;
     margin-bottom: var(--space-8);
+    color: var(--color-text);
   }
 
   h2 {
