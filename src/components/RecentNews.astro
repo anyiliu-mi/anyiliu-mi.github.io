@@ -10,9 +10,6 @@ const duration = `${items.length * 6}s`;
 
 {items.length > 0 && (
   <div class="news-ticker" style={`--duration: ${duration}`}>
-    <div class="news-label">
-      <span>RECENT<br/>NEWS</span>
-    </div>
     <div class="news-viewport">
       <ul class="news-track">
         {doubled.map((item, i) => (
@@ -39,25 +36,6 @@ const duration = `${items.length * 6}s`;
     max-width: 65ch;
     height: 120px;
     box-shadow: var(--shadow-sm);
-  }
-
-  .news-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--color-text);
-    color: var(--color-surface);
-    font-family: var(--font-sans);
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 0 var(--space-3);
-    white-space: nowrap;
-    flex-shrink: 0;
-    text-align: center;
-    line-height: 1.4;
-    min-width: 52px;
   }
 
   .news-viewport {
