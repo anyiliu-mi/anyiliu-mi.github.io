@@ -2,7 +2,7 @@
  * update-news.mjs
  *
  * Reads all .txt files from the /news folder, converts them into
- * src/data/news.json (sorted newest-first by filename date), then
+ * src/data/news.json (sorted chronologically by filename date), then
  * commits and pushes to GitHub so the live site updates automatically.
  *
  * Usage:
@@ -27,11 +27,14 @@ function parseDate(filename) {
 }
 
 // Format date as "Aug 07, 2026"
+// timeZone: 'UTC' is required — filename dates parse as UTC midnight, so
+// formatting in a western local zone would shift them back one day.
 function formatDate(date) {
   return date.toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
     day: '2-digit',
+    timeZone: 'UTC',
   });
 }
 
@@ -40,8 +43,8 @@ async function main() {
 
   const files = (await readdir(NEWS_DIR))
     .filter((f) => f.endsWith('.txt'))
-    .sort()
-    .reverse(); // newest first (relies on YYYY-MM-DD prefix)
+    .sort(); // oldest first (relies on YYYY-MM-DD prefix); the ticker scrolls
+             // chronologically, so newest ends up last in the list
 
   if (files.length === 0) {
     console.log('No .txt files found in /news — nothing to update.');

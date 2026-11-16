@@ -1,0 +1,1 @@
+Our paper "AeroMind: Poisoning the Shared-Memory Control Plane of an LLM-Driven Multi-UAV System" has been directly accepted at the 22nd ACM ASIA Conference on Computer and Communications Security (AsiaCCS 2027, Cycle 1), with a direct acceptance rate of 7.6% (39 of 514 submissions). Congratulations to Ibrahim Odat and the team!
