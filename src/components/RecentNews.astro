@@ -6,6 +6,25 @@ const items = newsData;
 const doubled = [...items, ...items];
 // Speed: ~6 seconds per item, feels natural
 const duration = `${items.length * 6}s`;
+
+type Segment = { value: string; quoted: boolean };
+
+// News files in /news are authored as plain text. Anything the author wrapped
+// in double quotes — paper titles, program names — is set in italics here, so
+// the source stays free of markup. Odd split indices are the captured spans.
+function segment(text: string): Segment[] {
+  return text
+    .split(/"([^"]*)"/)
+    .map((value, i) => ({ value, quoted: i % 2 === 1 }))
+    .filter((s) => s.value.length > 0);
+}
+
+// Trailing punctuation sits inside the quotes but stays upright, so only the
+// title itself is italicised.
+function splitTrailingPunctuation(value: string): [string, string] {
+  const match = value.match(/^(.*?)([,.;:!?]*)$/s);
+  return match ? [match[1], match[2]] : [value, ''];
+}
 ---
 
 {items.length > 0 && (
@@ -16,7 +35,11 @@ const duration = `${items.length * 6}s`;
           <li class="news-item" key={i}>
             <span class="news-date">{item.date}</span>
             <span class="news-sep">—</span>
-            <span class="news-text">{item.text}</span>
+            <span class="news-text">{segment(item.text).map((s) => {
+              if (!s.quoted) return s.value;
+              const [title, punctuation] = splitTrailingPunctuation(s.value);
+              return <Fragment>"<em>{title}</em>{punctuation}"</Fragment>;
+            })}</span>
           </li>
         ))}
       </ul>
@@ -113,5 +136,10 @@ const duration = `${items.length * 6}s`;
   .news-text {
     color: var(--color-text);
     font-family: var(--font-sans);
+  }
+
+  /* Quoted titles and program names */
+  .news-text em {
+    font-style: italic;
   }
 </style>
